@@ -1,11 +1,11 @@
-
 <section id="Wrapper">
-  <h3>Add Story</h3>
+  <h3>Edit Content</h3>
   <div class="row">
-    <form class="col s12" action="/content" method="post">
+    <form class="col s12" action="/content/{{content._id}}" method="post">
+      <input type="hidden" name="_method" value="put">
       <div class="row">
         <div class="input-field">
-          <input type="text" name="title" id="title">
+          <input type="text" name="title" id="title" value="{{content.title}}">
           <label for="title">Title</label>
         </div>
       </div>
@@ -13,8 +13,10 @@
       <div class="row">
         <div class="input-field">
           <select id="status" name="status">
+            {{#select content.status}}
             <option value="public" selected>Public</option>
             <option value="private">Private</option>
+            {{/select}}
           </select>
           <label for="status">Status</label>
         </div>
@@ -22,8 +24,8 @@
 
       <div class="row">
         <div class="input-field">
-          <h5>What content are you adding?</h5>
-          <textarea name="body" id="body"></textarea>
+          <h5>Changes?</h5>
+          <textarea name="body" id="body">{{content.body}}</textarea>
         </div>
       </div>
 
@@ -34,4 +36,5 @@
 
     </form>
   </div>
+
 </section>
