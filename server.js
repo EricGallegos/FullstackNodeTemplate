@@ -1,13 +1,13 @@
-const path = require('path')
-const express = require('express');
-const dotenv = require('dotenv');
-const morgan = require('morgan');
-const exphbs = require('express-handlebars');
-const passport = require('passport');
-const session = require('express-session');
-
-const connectDB = require('./config/db');
-const Mongo = require('mongodb');
+const path        = require('path');
+const express     = require('express');
+const mongoose    = require('mongoose');
+const dotenv      = require('dotenv');
+const morgan      = require('morgan');                  //Log handling
+const exphbs      = require('express-handlebars');      // view engine
+const passport    = require('passport');                // auth
+const session     = require('express-session');         //
+const MongoStore  = require('connect-mongo');
+const connectDB   = require('./config/db');
 
 // Load Config
 dotenv.config({ path: './config/config.env'})
@@ -32,6 +32,10 @@ app.use(session({
   secret: 'keyboard cat',
   resave: false,
   saveUninitialized: false,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    mongoUrl: process.env.MONGO_URI,
+   }),
 }));
 
 // Passport middleware
