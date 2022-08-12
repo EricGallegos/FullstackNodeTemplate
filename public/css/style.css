@@ -11,3 +11,16 @@ p{
 .fa-google{
   margin-right: 10px;
 }
+
+.fa-bars{
+  margin-left: 6em;
+}
+
+.container{
+  max-width: 100%;
+  width: inherit;
+}
+
+body > .container{
+  padding: 1em;
+}
