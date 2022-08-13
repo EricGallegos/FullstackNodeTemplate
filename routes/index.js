@@ -26,8 +26,6 @@ router.get('/dashboard', ensureAuth, async (req, res) => {
     console.error(e);
     res.render('error/500');
   }
-
-
 })
 
 module.exports = router;
