@@ -15,7 +15,7 @@ module.exports = function(passport){
       displayName: profile.displayName,
       firstName: profile.name.givenName,
       lastName: profile.name.familyName,
-      image: profile.photos[0].value,
+      image: profile.photos[0].value || "https://wilcity.com/wp-content/uploads/2020/06/115-1150152_default-profile-picture-avatar-png-green-768x805.jpg",
     }
     try {
       let user = await User.findOne( { googleId: profile.id } )
